@@ -231,6 +231,27 @@
         left: 0;
         color: var(--primary-color);
       }
+      /* Sección de Llamado a la Acción */
+      #cta {
+        text-align: center;
+      }
+      #cta p {
+        font-size: 20px;
+        margin-bottom: 20px;
+      }
+      .cta-button {
+        display: inline-block;
+        background-color: var(--primary-color);
+        color: #fff;
+        padding: 15px 30px;
+        font-size: 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: background 0.3s;
+      }
+      .cta-button:hover {
+        background-color: var(--primary-light);
+      }
       /* Información de Contacto */
       .contact-info p {
         font-size: 18px;
@@ -414,7 +435,10 @@
             />
             <div class="content">
               <h4>Sendero del Café y las Chorreras</h4>
-              <p><strong>Recorrido:</strong> El Saladito - Cerro de la Horqueta - Chorreras del Carmen</p>
+              <p>
+                <strong>Recorrido:</strong> El Saladito - Cerro de la Horqueta -
+                Chorreras del Carmen
+              </p>
               <p><strong>Distancia (ida):</strong> 10 kms</p>
               <p><strong>Tiempo del trayecto:</strong> 3:00 horas</p>
               <p><strong>Puntos de hidratación:</strong> Tres</p>
@@ -446,7 +470,10 @@
             />
             <div class="content">
               <h4>Camino de las Quebradas</h4>
-              <p><strong>Recorrido:</strong>La Vorágine – Quebrada del Porvenir – El Topacio</p>
+              <p>
+                <strong>Recorrido:</strong>La Vorágine – Quebrada del Porvenir –
+                El Topacio
+              </p>
               <p><strong>Distancia (ida):</strong> 8 kms</p>
               <p><strong>Tiempo del trayecto:</strong> 2:30 horas</p>
               <p><strong>Puntos de hidratación:</strong> Tres</p>
@@ -522,12 +549,25 @@
         </ul>
       </section>
 
+      <!-- Sección de Llamado a la Acción -->
+      <section id="cta">
+        <h2>¡Escríbenos!</h2>
+        <p>
+          Si tienes preguntas o deseas más información, haz clic en el siguiente
+          enlace para escribirnos.
+        </p>
+        <a href="https://chatgpt.com/g/g-67ba22e4023481919e31c5c0ff7edcbe-vital-senderismo" class="cta-button"      target="_blank" 
+     rel="noopener noreferrer"
+          >Escríbenos ahora</a
+        >
+      </section>
+
       <!-- Sección de Contacto -->
       <section id="contacto" class="contact-info">
         <h2>Contacto</h2>
         <p>
           <strong>Sitio web:</strong>
-          <a href="http://vitalsenderismo.com" target="_blank"
+          <a href="http://vitalsenderismo.com target="_blank"
             >vitalsenderismo.com</a
           >
         </p>
@@ -549,7 +589,8 @@
     <script>
       function contactarWhatsApp() {
         // Reemplaza "1234567890" con el número real en formato internacional sin el símbolo "+"
-        var url = "https://chatgpt.com/g/g-67ba22e4023481919e31c5c0ff7edcbe-vital-senderismo";
+        var url =
+          "https://chatgpt.com/g/g-67ba22e4023481919e31c5c0ff7edcbe-vital-senderismo";
         window.open(url, "_blank");
       }
     </script>
