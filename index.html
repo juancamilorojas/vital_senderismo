@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vital Senderismo</title>
+    <!-- Tipografía profesional -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-color: #1d4d48;
+        --primary-light: #3b6b66; /* Versión más clara de la primaría */
+      }
+      /* Reset y estilos base */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Open Sans", sans-serif;
+        font-size: 18px;
+        color: #333;
+        background-color: #f8f8f8;
+        line-height: 1.6;
+      }
+
+      /* Imagen responsive */
+      img.responsive {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin-top: 20px;
+        display: block;
+      }
+      /* Encabezado con imagen de fondo */
+      header {
+        background: url("https://via.placeholder.com/1200x400?text=Naturaleza")
+          center center/cover no-repeat;
+        position: relative;
+        height: 200px;
+        border-bottom: #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        background-color: #1d4d48;
+        color: #ffffff;
+      }
+      header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #1d4d48; /* Mantiene un fondo semi-transparente */
+        z-index: 0; /* Envía la capa de fondo detrás del texto */
+      }
+
+      header h1 {
+        font-size: 48px;
+        z-index: 1;
+        margin-bottom: 10px;
+      }
+      header p {
+        font-size: 24px;
+        z-index: 1;
+      }
+
+      header h1,
+      header p {
+        position: relative; /* Asegura que los textos queden por encima */
+        z-index: 1;
+      }
+      /* Navegación */
+      nav {
+        background-color: var(--primary-color);
+      }
+      nav ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      nav li {
+      }
+      nav a {
+        display: block;
+        padding: 15px 25px;
+        color: #fff;
+        text-decoration: none;
+        font-size: 18px;
+        transition: background 0.3s;
+      }
+      nav a:hover {
+        background-color: var(--primary-light);
+      }
+      /* Contenedor principal */
+      .container {
+        max-width: 1400px;
+        margin: 40px auto;
+        padding: 0 20px;
+      }
+      /* Estilo de secciones */
+      section {
+        background: #fff;
+        padding: 30px;
+        margin-bottom: 40px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+      section h2 {
+        font-size: 32px;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 10px;
+      }
+      section p {
+        margin-bottom: 20px;
+      }
+      /* Membresías */
+      .memberships {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+      }
+      .membership-card {
+        background: #f0fbf9;
+        border: 1px solid var(--primary-color);
+        border-radius: 8px;
+        flex: 1 1 300px;
+        padding: 20px;
+        transition: transform 0.3s;
+        display: flex;
+        flex-direction: column;
+      }
+      .membership-card:hover {
+        transform: translateY(-5px);
+      }
+      .membership-card h3 {
+        font-size: 26px;
+        margin-bottom: 15px;
+        text-align: center;
+        color: #333;
+      }
+      .membership-card ul {
+        list-style: none;
+        margin-bottom: 15px;
+      }
+      .membership-card li {
+        margin-bottom: 10px;
+        padding-left: 20px;
+        position: relative;
+      }
+      .membership-card li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: var(--primary-color);
+      }
+      .membership-card .price {
+        font-size: 24px;
+        font-weight: 600;
+        text-align: center;
+        color: var(--primary-color);
+        margin-top: auto; /* Alinea el costo al fondo de la tarjeta */
+      }
+      /* Costos Adicionales */
+      .additional-costs ul {
+        list-style: none;
+      }
+      .additional-costs li {
+        margin-bottom: 15px;
+        font-size: 18px;
+      }
+      .additional-costs li strong {
+        color: var(--primary-color);
+      }
+      /* Rutas Disponibles */
+      .routes {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+      }
+      .route-card {
+        background: #e8f5e9;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+      .route-card img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .route-card .content {
+        padding: 15px;
+      }
+      .route-card h4 {
+        font-size: 22px;
+        margin-bottom: 10px;
+        color: #333;
+      }
+      .route-card p {
+        font-size: 16px;
+        margin-bottom: 8px;
+        line-height: 1.4;
+      }
+      .route-card p strong {
+        color: var(--primary-color);
+      }
+      /* Beneficios */
+      .benefits ul {
+        list-style: none;
+      }
+      .benefits li {
+        margin-bottom: 15px;
+        font-size: 18px;
+        padding-left: 30px;
+        position: relative;
+      }
+      .benefits li::before {
+        content: "★";
+        position: absolute;
+        left: 0;
+        color: var(--primary-color);
+      }
+      /* Información de Contacto */
+      .contact-info p {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+      .contact-info a {
+        color: var(--primary-color);
+        text-decoration: none;
+      }
+      /* Botón flotante de WhatsApp */
+      .whatsapp-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: var(--primary-color);
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        font-size: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+        z-index: 1000;
+        transition: background 0.3s;
+      }
+      .whatsapp-btn:hover {
+        background-color: var(--primary-light);
+      }
+      @media (max-width: 768px) {
+        header h1 {
+          font-size: 36px;
+        }
+        header p {
+          font-size: 20px;
+        }
+        nav a {
+          font-size: 16px;
+          padding: 12px 20px;
+        }
+        .membership-card {
+          flex: 1 1 100%;
+        }
+        .whatsapp-btn {
+          width: 50px;
+          height: 50px;
+          font-size: 26px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Encabezado -->
+    <header>
+      <div>
+        <h1>Vital Senderismo</h1>
+        <p>Explora el mundo, sin límites de edad</p>
+      </div>
+    </header>
+
+    <!-- Navegación -->
+    <nav>
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#membresias">Membresías</a></li>
+        <li><a href="#costos">Costos Adicionales</a></li>
+        <li><a href="#rutas">Rutas</a></li>
+        <li><a href="#beneficios">Beneficios</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <!-- Sección de Inicio -->
+      <section id="inicio">
+        <h2>¡Aprovecha!</h2>
+        <p>
+          Únete a nuestras caminatas guiadas diseñadas especialmente para
+          adultos mayores. Descubre paisajes increíbles, respira aire puro y
+          mejora tu bienestar de manera segura y placentera. Conéctate con la
+          Naturaleza.
+        </p>
+        <!-- Imagen agregada a la sección de inicio -->
+        <img
+          src="\\wsl.localhost\Ubuntu\home\juanca\MBA\vital_senderismo\fotos-web\sunrise-bali-jungle.jpg"
+          alt="Caminata en la naturaleza"
+          class="responsive"
+        />
+      </section>
+
+      <!-- Sección de Membresías -->
+      <section id="membresias">
+        <h2>Membresías</h2>
+        <div class="memberships">
+          <!-- Membresía Basic -->
+          <div class="membership-card">
+            <h3>Basic</h3>
+            <ul>
+              <li>Evaluación inicial de condición física obligatoria</li>
+              <li>2 rutas locales (media y baja dificultad)</li>
+              <li>Guías certificados</li>
+              <li>Registro fotográfico (fotos grupales)</li>
+              <li>Estiramientos previos</li>
+              <li>Transporte grupal</li>
+            </ul>
+            <p class="price">$300.000/mes</p>
+          </div>
+          <!-- Membresía Premium -->
+          <div class="membership-card">
+            <h3>Premium</h3>
+            <ul>
+              <li>Evaluación inicial de condición física obligatoria</li>
+              <li>5 rutas locales y cercanas</li>
+              <li>Acompañamiento personalizado</li>
+              <li>Registro fotográfico profesional (individual y grupal)</li>
+              <li>Snacks y bebidas saludables</li>
+              <li>Transporte grupal</li>
+            </ul>
+            <p class="price">$450.000/mes</p>
+          </div>
+          <!-- Membresía VIP -->
+          <div class="membership-card">
+            <h3>VIP</h3>
+            <ul>
+              <li>Evaluación inicial de condición física obligatoria</li>
+              <li>
+                8 rutas exclusivas (locales, nacionales e internacionales)
+              </li>
+              <li>Médico presente durante la actividad</li>
+              <li>Plan personalizado de caminatas</li>
+              <li>Transporte privado</li>
+              <li>Kit de senderismo personalizado</li>
+              <li>Registro fotográfico profesional con álbum personalizado</li>
+              <li>Cuidado post-caminata (masajes y charlas sobre bienestar)</li>
+            </ul>
+            <p class="price">$600.000/mes</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sección de Costos Adicionales -->
+      <section id="costos" class="additional-costs">
+        <h2>Costos Adicionales</h2>
+        <ul>
+          <li>
+            <strong>Viaje Grupal:</strong> $100,000 - $300,000 COP por persona
+            (incluye transporte, almuerzo y caminata guiada por rutas
+            diferentes).
+          </li>
+          <li>
+            <strong>Kit de Senderismo:</strong> Básico: $100,000 COP | Premium:
+            $250,000 COP.
+          </li>
+          <li>
+            <strong>Cuidado Post-Caminata:</strong> Masajes relajantes: $80,000
+            COP por sesión; Charlas sobre bienestar: $30,000 COP por charla.
+          </li>
+          <li>
+            <strong>Fotografía Adicional:</strong> Sesión fotográfica premium
+            (álbum personalizado, fotos digitales): $120,000 COP.
+          </li>
+          <li>
+            <strong>Transporte Privado:</strong> $50,000 COP por persona (para
+            viajes fuera de la ciudad o rutas especiales).
+          </li>
+        </ul>
+      </section>
+
+      <!-- Sección de Rutas Disponibles -->
+      <section id="rutas">
+        <h2>Rutas Disponibles</h2>
+        <div class="routes">
+          <!-- Ruta 1 -->
+          <div class="route-card">
+            <img
+              src="\\wsl.localhost\Ubuntu\home\juanca\MBA\vital_senderismo\fotos-web\Imagen de WhatsApp 2025-02-23 a las 20.52.05_d221a70b.jpg"
+              alt="El Saladito - Cerro de la Horqueta - Chorreras del Carmen"
+            />
+            <div class="content">
+              <h4>Sendero del Café y las Chorreras</h4>
+              <p><strong>Recorrido:</strong> El Saladito - Cerro de la Horqueta - Chorreras del Carmen</p>
+              <p><strong>Distancia (ida):</strong> 10 kms</p>
+              <p><strong>Tiempo del trayecto:</strong> 3:00 horas</p>
+              <p><strong>Puntos de hidratación:</strong> Tres</p>
+              <p>
+                <strong>Transporte de regreso:</strong> Sí, incluido en el valor
+                de la inscripción
+              </p>
+              <p>
+                <strong>Puntos de interés:</strong> Fábrica de Café Aural,
+                cultivos de guanábanas “El Paraíso”, La Torre del Tigre
+                (mirador), chorreras del Carmen.
+              </p>
+              <p><strong>Desnivel:</strong> ↑221 m ↓743 m</p>
+              <p>
+                <strong>Descripción:</strong> Nos encontraremos en El Saladito,
+                un corregimiento en el norte del área rural del municipio de
+                Santiago de Cali, que colinda con corregimientos como La Elvira,
+                Dagua y Felidia. El clima de 19°C permitirá disfrutar de
+                maravillosos paisajes, vegetación y la presencia de mariposas y
+                aves en la travesía.
+              </p>
+            </div>
+          </div>
+          <!-- Ruta 2 -->
+          <div class="route-card">
+            <img
+              src="\\wsl.localhost\Ubuntu\home\juanca\MBA\vital_senderismo\fotos-web\Imagen de WhatsApp 2025-02-23 a las 20.52.05_0c4e239f.jpg"
+              alt="La Vorágine – Quebrada del Porvenir – El Topacio"
+            />
+            <div class="content">
+              <h4>Camino de las Quebradas</h4>
+              <p><strong>Recorrido:</strong>La Vorágine – Quebrada del Porvenir – El Topacio</p>
+              <p><strong>Distancia (ida):</strong> 8 kms</p>
+              <p><strong>Tiempo del trayecto:</strong> 2:30 horas</p>
+              <p><strong>Puntos de hidratación:</strong> Tres</p>
+              <p>
+                <strong>Transporte de regreso:</strong> Sí, incluido en el valor
+                de la inscripción
+              </p>
+              <p>
+                <strong>Puntos de interés:</strong> Quebrada Nilo, Quebrada del
+                Porvenir, varios ingresos al río Pance, Finca Ecoturística Santa
+                Elena y Quebrada Los Indios.
+              </p>
+              <p><strong>Desnivel:</strong> ↑480 m ↓2 m</p>
+              <p>
+                <strong>Descripción:</strong> Nos encontraremos en La Vorágine,
+                de fácil acceso y con opción de parqueaderos de pago. La
+                caminata de nivel medio incluirá múltiples ingresos al río Pance
+                y el recorrido por las Quebradas Nilo, del Porvenir y Los
+                Indios. Al finalizar, se podrá ingresar opcionalmente al Centro
+                de educación ambiental de El Topacio, para una experiencia
+                inmersiva en la biodiversidad del Parque Nacional Natural
+                Farallones de Cali.
+              </p>
+            </div>
+          </div>
+          <!-- Ruta 3 -->
+          <div class="route-card">
+            <img
+              src="\\wsl.localhost\Ubuntu\home\juanca\MBA\vital_senderismo\fotos-web\Imagen de WhatsApp 2025-02-23 a las 20.52.03_17dfb2d4.jpg"
+              alt="Pueblo Pance – Cascada Las 3H"
+            />
+            <div class="content">
+              <h4>Travesía a la Cascada Esmeralda</h4>
+              <p><strong>Recorrido:</strong>Pueblo Pance – Cascada Las 3H</p>
+              <p><strong>Distancia (ida y vuelta):</strong> 10 kms</p>
+              <p><strong>Tiempo del trayecto:</strong> 5:00 horas</p>
+              <p><strong>Puntos de hidratación:</strong> Seis</p>
+              <p>
+                <strong>Puntos de interés:</strong> Mirador natural Pueblo
+                Pance, quebrada la Castellana, finca ecoturística La Esmeralda y
+                cascada Las 3 H.
+              </p>
+              <p><strong>Desnivel:</strong> ↑564 m ↓132 m</p>
+              <p>
+                <strong>Descripción:</strong> Esta ruta, ideal para el
+                avistamiento de aves, transcurre entre el bosque nativo de los
+                farallones, ofreciendo un ambiente en el que los 20°C se sienten
+                más frescos por la humedad. La gran cascada Las 3 H, de más de
+                15 metros de altura, es un impresionante premio para quienes se
+                atreven a desafiar sus límites.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sección de Beneficios -->
+      <section id="beneficios" class="benefits">
+        <h2>Beneficios</h2>
+        <ul>
+          <li>
+            <strong>Salud y bienestar:</strong> Mejora la movilidad, fortalece
+            el corazón y reduce el estrés.
+          </li>
+          <li>
+            <strong>Socialización:</strong> Comparte experiencias en un ambiente
+            natural y agradable.
+          </li>
+          <li>
+            <strong>Exploración:</strong> Conoce nuevos destinos y conecta con
+            la biodiversidad.
+          </li>
+        </ul>
+      </section>
+
+      <!-- Sección de Contacto -->
+      <section id="contacto" class="contact-info">
+        <h2>Contacto</h2>
+        <p>
+          <strong>Sitio web:</strong>
+          <a href="http://vitalsenderismo.com" target="_blank"
+            >vitalsenderismo.com</a
+          >
+        </p>
+        <p><strong>Email:</strong> comercial@vitalsenderismo.com</p>
+        <p><strong>Teléfono:</strong> 602 555 23 34</p>
+        <p><strong>Dirección:</strong> Cl. 18 #122-135 Pance, Cali</p>
+      </section>
+    </div>
+
+    <!-- Botón flotante de WhatsApp -->
+    <button
+      class="whatsapp-btn"
+      onclick="contactarWhatsApp()"
+      aria-label="Contacto por WhatsApp"
+    >
+      &#x2709;
+    </button>
+
+    <script>
+      function contactarWhatsApp() {
+        // Reemplaza "1234567890" con el número real en formato internacional sin el símbolo "+"
+        var url = "https://chatgpt.com/g/g-67ba22e4023481919e31c5c0ff7edcbe-vital-senderismo";
+        window.open(url, "_blank");
+      }
+    </script>
+  </body>
+</html>
